@@ -8,8 +8,19 @@ class VideoPost extends StatefulWidget {
 }
 
 class _VideoPostState extends State<VideoPost> {
+
+final VideoPlayerController _videoPlayerController =
+  
+  
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Stack(
+      children: [
+        Positioned.fill(
+            child: Container(
+          color: Colors.teal,
+        ),),
+      ],
+    );
   }
 }
