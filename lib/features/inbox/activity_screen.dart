@@ -10,20 +10,55 @@ class ActivityScreen extends StatefulWidget {
   State<ActivityScreen> createState() => _ActivityScreenState();
 }
 
-class _ActivityScreenState extends State<ActivityScreen> {
+class _ActivityScreenState extends State<ActivityScreen>
+    with SingleTickerProviderStateMixin {
   final List<String> _notifications = List.generate(20, (index) => "${index}h");
+
+  late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 200),
+  ); //late가 가장 중요하고 빠지면 안됨! this를 사용하려면 late가 있어야 함!
+
+  late final Animation<double> _animation = Tween(
+    begin: 0.0,
+    end: 0.5, //화살표가 반바퀴 턴한다는 의미!
+  ).animate(_animationController);
 
   void _onDismissed(String notification) {
     _notifications.remove(notification);
     setState(() {});
   }
 
+  void _onTitleTap() {
+    if (_animationController.isCompleted) {
+      _animationController
+          .reverse(); //reverse를 추가해서 반바퀴 턴만 하는 것이 아니라 다시 화살표가 제자리로 돌아 올수 있음!
+    } else {
+      _animationController.forward();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(_notifications);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("All activity"),
+        title: GestureDetector(
+          onTap: _onTitleTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("All activity"),
+              Gaps.h2,
+              RotationTransition(
+                turns: _animation,
+                child: const FaIcon(
+                  FontAwesomeIcons.chevronDown,
+                  size: Sizes.size14,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
       body: ListView(
         children: [
