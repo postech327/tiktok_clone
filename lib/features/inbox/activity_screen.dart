@@ -41,6 +41,8 @@ class _ActivityScreenState extends State<ActivityScreen>
     }
   ]; //github 들어가서 위의 자료는 ctrl + c / ctrl + v함!
 
+  bool _showBarrier = false;
+
   late final AnimationController _animationController = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 200),
@@ -57,18 +59,27 @@ class _ActivityScreenState extends State<ActivityScreen>
     end: Offset.zero,
   ).animate(_animationController);
 
+  late final Animation<Color?> _barrierAnimation = ColorTween(
+    begin: Colors.transparent,
+    end: Colors.black38,
+  ).animate(_animationController);
+
   void _onDismissed(String notification) {
     _notifications.remove(notification);
     setState(() {});
   }
 
-  void _onTitleTap() {
+  void _toggleAnimations() async {
     if (_animationController.isCompleted) {
-      _animationController
+      await _animationController
           .reverse(); //reverse를 추가해서 반바퀴 턴만 하는 것이 아니라 다시 화살표가 제자리로 돌아 올수 있음!
     } else {
       _animationController.forward();
     }
+
+    setState(() {
+      _showBarrier = !_showBarrier;
+    });
   }
 
   @override
@@ -76,7 +87,7 @@ class _ActivityScreenState extends State<ActivityScreen>
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
-          onTap: _onTitleTap,
+          onTap: _toggleAnimations,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -192,6 +203,14 @@ class _ActivityScreenState extends State<ActivityScreen>
                 )
             ],
           ),
+          if (_showBarrier)
+            AnimatedModalBarrier(
+              color: _barrierAnimation,
+              dismissible:
+                  true, // 아래 패널을 없애려고 이 부분을 클릭하면 아래에 있는 onDismiss함수를 실행!
+              onDismiss:
+                  _toggleAnimations, //애니메이션 초기화 진행, 그 다음 barrier를 클릭하면 패널이 다시 올라감!
+            ),
           SlideTransition(
             position: _panelAnimation,
             child: Container(
