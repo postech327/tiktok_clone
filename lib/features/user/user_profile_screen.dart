@@ -32,6 +32,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             title: const Text("Hello!"), //타이틀을 여기다 놓으면 배경안에 있는 제목이 됨!!
           ),
         ),
+        SliverFixedExtentList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => Container(),
+          ),
+          itemExtent: 100,
+        ),
       ],
     );
   }
