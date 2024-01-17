@@ -140,25 +140,62 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     ),
                     Gaps.v14,
                     FractionallySizedBox(
-                      widthFactor: 0.33,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Sizes.size12,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(Sizes.size4),
+                      widthFactor: 0.5,
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Sizes.size12,
+                              horizontal: Sizes.size12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(Sizes.size4),
+                              ),
+                            ),
+                            child: const Text(
+                              'Follow',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'Follow',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
+                          Gaps.h10,
+                          Container(
+                            padding: const EdgeInsets.all(Sizes.size16),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.zero),
+                              border: Border.all(
+                                color: Colors.grey.shade500,
+                                width: 1,
+                              ),
+                            ),
+                            child: const FaIcon(
+                              FontAwesomeIcons.youtube,
+                              size: Sizes.size10,
+                            ),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
+                          Gaps.h10,
+                          Container(
+                            padding: const EdgeInsets.all(
+                              Sizes.size16,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.zero),
+                              border: Border.all(
+                                color: Colors.grey.shade500,
+                                width: 1,
+                              ),
+                            ),
+                            child: const FaIcon(
+                              FontAwesomeIcons.caretDown,
+                              size: Sizes.size10,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
 
@@ -201,28 +238,52 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           },
           body: TabBarView(
             children: [
-              GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 20,
-                padding: EdgeInsets.zero,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: Sizes.size2,
-                    mainAxisSpacing: Sizes.size2,
-                    childAspectRatio: 9 / 14),
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    AspectRatio(
-                      aspectRatio: 9 / 14,
-                      child: FadeInImage.assetNetwork(
-                        fit: BoxFit.cover,
-                        placeholder:
-                            "C:\\Users\\Administrator\\Documents\\tiktok_clone\\lib\\features\\assets\\images\\siha_test.jpg",
-                        image:
-                            "https://images.unsplash.com/photo-1703371169541-7f743764127e?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              Expanded(
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 20,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: Sizes.size2,
+                      mainAxisSpacing: Sizes.size2,
+                      childAspectRatio: 9 / 13),
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      AspectRatio(
+                        aspectRatio: 9 / 13,
+                        child: FadeInImage.assetNetwork(
+                          fit: BoxFit.cover,
+                          placeholder:
+                              "C:\\Users\\Administrator\\Documents\\tiktok_clone\\lib\\features\\assets\\images\\siha_test.jpg",
+                          image:
+                              "https://images.unsplash.com/photo-1703371169541-7f743764127e?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        ),
                       ),
-                    ),
-                  ],
+                      const Expanded(
+                        child: Positioned(
+                          bottom: 0,
+                          child: Row(
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.play,
+                                color: Colors.orange,
+                                size: Sizes.size20,
+                              ),
+                              Gaps.h2,
+                              Text(
+                                "4.1M",
+                                style: TextStyle(
+                                    color: Colors.orange,
+                                    fontSize: Sizes.size12),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const Center(
