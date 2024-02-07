@@ -151,11 +151,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     FractionallySizedBox(
                       widthFactor: 0.5,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(
                               vertical: Sizes.size12,
-                              horizontal: Sizes.size12,
+                              horizontal: Sizes.size16,
                             ),
                             decoration: BoxDecoration(
                               color: Theme.of(context).primaryColor,
@@ -174,7 +175,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           ),
                           Gaps.h10,
                           Container(
-                            padding: const EdgeInsets.all(Sizes.size16),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Sizes.size12,
+                              horizontal: Sizes.size24,
+                            ),
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.all(Radius.zero),
                               border: Border.all(
@@ -184,13 +188,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             ),
                             child: const FaIcon(
                               FontAwesomeIcons.youtube,
-                              size: Sizes.size10,
+                              size: Sizes.size20,
                             ),
                           ),
                           Gaps.h10,
                           Container(
-                            padding: const EdgeInsets.all(
-                              Sizes.size16,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Sizes.size12,
+                              horizontal: Sizes.size32,
                             ),
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.all(Radius.zero),
@@ -201,7 +206,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             ),
                             child: const FaIcon(
                               FontAwesomeIcons.caretDown,
-                              size: Sizes.size10,
+                              size: Sizes.size20,
                             ),
                           ),
                         ],
