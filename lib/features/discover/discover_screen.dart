@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/breakpoints.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
@@ -49,37 +48,38 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-            elevation: 1,
-            title: Container(
-              constraints: const BoxConstraints(
-                maxWidth: Breakpoints.sm,
-              ),
-              child: CupertinoSearchTextField(
-                controller: _textEditingController,
-                onChanged: _onSearchChanged,
-                onSubmitted: _onSearchSubmitted,
-              ),
+          elevation: 1,
+          title: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: Breakpoints.sm,
             ),
-            bottom: TabBar(
-              splashFactory: NoSplash.splashFactory,
-              padding: const EdgeInsets.symmetric(
-                horizontal: Sizes.size16,
-              ),
-              isScrollable: true,
-              labelStyle: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: Sizes.size16,
-              ),
-              indicatorColor: Colors.black,
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.grey.shade500,
-              tabs: [
-                for (var tab in tabs)
-                  Tab(
-                    text: tab,
-                  ),
-              ],
-            )),
+            child: CupertinoSearchTextField(
+              controller: _textEditingController,
+              onChanged: _onSearchChanged,
+              onSubmitted: _onSearchSubmitted,
+            ),
+          ),
+          bottom: TabBar(
+            splashFactory: NoSplash.splashFactory,
+            padding: const EdgeInsets.symmetric(
+              horizontal: Sizes.size16,
+            ),
+            isScrollable: true,
+            labelStyle: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: Sizes.size16,
+            ),
+            indicatorColor: Colors.black,
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey.shade500,
+            tabs: [
+              for (var tab in tabs)
+                Tab(
+                  text: tab,
+                ),
+            ],
+          ),
+        ),
         body: TabBarView(
           children: [
             GridView.builder(
@@ -170,7 +170,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   tab,
                   style: const TextStyle(fontSize: 28),
                 ),
-              )
+              ),
           ],
         ),
       ),
