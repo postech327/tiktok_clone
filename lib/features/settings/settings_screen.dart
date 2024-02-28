@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,7 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings '),
+        title: const Text('Settings'),
       ),
       body: ListView(
         children: [
@@ -46,12 +47,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 firstDate: DateTime(1980),
                 lastDate: DateTime(2030),
               );
-              print(date);
+              if (kDebugMode) {
+                print(date);
+              }
+              if (!mounted) return;
               final time = await showTimePicker(
                 context: context,
                 initialTime: TimeOfDay.now(),
               );
-              print(time);
+              if (kDebugMode) {
+                print(time);
+              }
+              if (!mounted) return;
               final booking = await showDateRangePicker(
                 context: context,
                 firstDate: DateTime(1980),
@@ -66,7 +73,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   );
                 },
               );
-              print(booking);
+              if (kDebugMode) {
+                print(booking);
+              }
             },
             title: const Text("What is your birthday?"),
             subtitle: const Text("I need to know!"),
