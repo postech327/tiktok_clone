@@ -5,5 +5,8 @@
   "appleButton": "Continue with Apple",
   "emaillPasswordButton": "Use email & password",
   "alreadyHaveAnAccount": "Already have an account?",
-  "logIn": "Log in"
+  "logIn": "Log in",
+  "likeCount": "{value}",
+  "commentCount": "{value}",
+  "commentTitle": "{potato} {potato2, plural, =1{comment} other{comments}}"
 }
